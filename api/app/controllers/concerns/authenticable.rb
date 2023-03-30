@@ -1,4 +1,4 @@
-module Authenticatable
+module Authenticable
   extend ActiveSupport::Concern
 
   included do
