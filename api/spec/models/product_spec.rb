@@ -12,4 +12,7 @@ RSpec.describe Product, type: :model do
 
   it { should have_many(:product_categories).dependent(:destroy) }
   it { should have_many(:categories).through(:product_categories) }
+
+  it { should have_one_attached(:image)}
+  it { should validate_presence_of(:image)}
 end
