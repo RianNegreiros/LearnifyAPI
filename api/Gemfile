@@ -20,6 +20,9 @@ gem "devise_token_auth"
 # CORS
 gem "rack-cors"
 
+# API
+gem 'jbuilder'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails'
