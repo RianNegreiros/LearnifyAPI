@@ -6,4 +6,6 @@ RSpec.describe Category, type: :model do
 
   it { should have_many(:product_categories).dependent(:destroy) }
   it { should have_many(:products).through(:product_categories) }
+
+  it_behaves_like "name searchable concern", :category
 end
