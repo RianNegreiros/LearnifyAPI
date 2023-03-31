@@ -20,7 +20,7 @@ module Admin::V1
     def destroy
       @category.destroy!
     rescue
-      render_errors(fields: @category.errors.messages)
+      render_error(fields: @category.errors.messages)
     end
 
     private
@@ -38,7 +38,7 @@ module Admin::V1
       @category.save!
       render :show
     rescue
-      render_errors(fields: @category.errors.messages)
+      render_error(fields: @category.errors.messages)
     end
   end
 end
