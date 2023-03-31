@@ -29,4 +29,6 @@ RSpec.describe Coupon, type: :model do
     subject.valid?
     expect(subject.errors[:due_date]).to_not include("Must be a future date")
   end
+
+  it_behaves_like "paginatable concern", :coupon
 end

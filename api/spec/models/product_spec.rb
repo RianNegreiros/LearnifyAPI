@@ -15,4 +15,7 @@ RSpec.describe Product, type: :model do
 
   it { should have_one_attached(:image)}
   it { should validate_presence_of(:image)}
+
+  it_behaves_like "name searchable concern", :product
+  it_behaves_like "paginatable concern", :product
 end
