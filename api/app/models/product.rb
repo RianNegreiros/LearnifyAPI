@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :productable, polymorphic: true
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
 
@@ -9,6 +9,10 @@ class Product < ApplicationRecord
 
   has_one_attached :image
   validates :image, presence: true
+
+  validates :status, presence: true
+
+  enum status: { available: 0, unavailable: 1 }
 
   include NameSearchable
   include Paginatable
