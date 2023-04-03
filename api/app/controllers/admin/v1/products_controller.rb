@@ -3,7 +3,7 @@ module Admin::V1
     before_action :load_product, only: %i(update destroy)
 
     def index
-      @products = Product.all
+      @products = load_products
     end
 
     def create
@@ -24,6 +24,11 @@ module Admin::V1
     end
 
     private
+
+    def load_products
+      permitted = params.permit({ search: :name }, { order: {} }, :page, :length)
+      Admin::ModelLoadingService.new(Product.all, permitted).call
+    end
 
     def load_product
       @product = Product.find(params[:id])
