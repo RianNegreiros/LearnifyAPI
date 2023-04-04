@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_03_205134) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_183643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_205134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["system_requirement_id"], name: "index_games_on_system_requirement_id"
+  end
+
+  create_table "licenses", force: :cascade do |t|
+    t.string "key"
+    t.integer "platform"
+    t.integer "status"
+    t.bigint "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_licenses_on_game_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -127,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_205134) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "games", "system_requirements"
+  add_foreign_key "licenses", "games"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
 end
