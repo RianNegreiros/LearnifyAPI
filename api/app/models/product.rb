@@ -14,6 +14,6 @@ class Product < ApplicationRecord
 
   enum status: { available: 0, unavailable: 1 }
 
-  include NameSearchable
+  include LikeSearchable
   include Paginatable
 end
