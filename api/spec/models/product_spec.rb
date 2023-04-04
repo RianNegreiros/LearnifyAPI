@@ -19,6 +19,6 @@ RSpec.describe Product, type: :model do
   it { should validate_presence_of(:status) }
   it { should define_enum_for(:status).with_values([:available, :unavailable]) }
 
-  it_behaves_like "name searchable concern", :product
+  it_behaves_like "like searchable concern", :product, :name
   it_behaves_like "paginatable concern", :product
 end
