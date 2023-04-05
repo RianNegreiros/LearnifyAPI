@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :featured, presence: true
+  validates :featured, presence: true, if: -> { featured.nil? }
   validates :status, presence: true
   validates :image, presence: true
 
