@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Coupon, type: :model do
+  it { should validate_presence_of(:name) }
+
   it { should validate_presence_of(:code) }
   it { should validate_uniqueness_of(:code).case_insensitive }
 
