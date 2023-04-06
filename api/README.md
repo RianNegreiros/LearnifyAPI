@@ -2,4 +2,4 @@
 
 ## Database Model
 
-![Database Model](../documentation/data-model.png)
+![Database Model](./public/documentation/data-model.png)
