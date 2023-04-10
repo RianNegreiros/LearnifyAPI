@@ -1,10 +1,11 @@
+import AdminComponent from "@/components/shared/AdminComponent"
 import withAuthAdmin from "@/components/withAuthAdmin"
 
 const Home = () => {
   return (
-    <div>
+    <AdminComponent>
       <h1>Admin</h1>
-    </div>
+    </AdminComponent>
   )
 }
 
