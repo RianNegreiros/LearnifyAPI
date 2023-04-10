@@ -1,6 +1,7 @@
 import { Col, Row } from 'react-bootstrap'
 import AdminHeader from '@/components/shared/Header/AdminHeader'
 import AdminFooter from '@/components/shared/Footer/AdminFooter'
+import LateralMenu from '@/components/shared/LateralMenu'
 
 interface AdminComponentProps {
   children: React.ReactNode
@@ -10,7 +11,7 @@ export default function AdminComponent({ children }: AdminComponentProps) {
   return (
     <Row className="mr-lg-4">
         <Col lg={3}>
-            Menu
+            <LateralMenu />
         </Col>
 
         <Col lg={9}>
