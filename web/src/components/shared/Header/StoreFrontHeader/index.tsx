@@ -1,8 +1,8 @@
-import styles from '@/styles/Header.module.css'
+import styles from './styles.module.css'
 import { Row, Col, InputGroup, FormGroup } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faShoppingCart, faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import Logo from '../../Logo'
+import Logo from '@/components/shared/Logo'
 
 export default function Header() {
   return (

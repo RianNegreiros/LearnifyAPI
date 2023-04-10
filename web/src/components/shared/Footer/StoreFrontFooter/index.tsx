@@ -1,5 +1,5 @@
 import Logo from "@/components/shared/Logo"
-import styles from "@/styles/Footer.module.css"
+import styles from "./styles.module.css"
 import { Col, Row } from "react-bootstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faFacebookF, faInstagram, faYoutube, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'

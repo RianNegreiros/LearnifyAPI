@@ -1,4 +1,4 @@
-import styles from "@/styles/BlueBackground.module.css"
+import styles from "./styles.module.css"
 
 interface Props {
   children: React.ReactNode
