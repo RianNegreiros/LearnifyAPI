@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './styles.module.css'
-import Logo from '../Logo'
+import Logo from '@/components/shared/Logo'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignal, faUser, faGamepad, faCheckSquare, faLaptop, faTicketAlt, faDollarSign, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 import { useRouter } from 'next/router'
+import SignOutService from '@/util/SignOutService'
 
 export default function LateralMenu() {
   const router = useRouter()
@@ -75,8 +76,8 @@ export default function LateralMenu() {
           </a>
         </Link>
 
-        <Link href="/Admin/#">
-          <a>
+        <Link href="/Auth/Login">
+          <a onClick={SignOutService.execute}>
             <FontAwesomeIcon icon={faSignOutAlt} color="var(--color-gray-light)" className="mr-3" />
             Logout
             <hr />
