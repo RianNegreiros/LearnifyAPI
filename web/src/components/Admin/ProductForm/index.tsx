@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Form, Col, Row } from 'react-bootstrap'
 import { faTimes, faGamepad } from '@fortawesome/free-solid-svg-icons'
-import styles from '@/styles/AdminPanel.module.css'
-import StyledButton from '../../shared/StyledButton'
+import styles from '../styles.module.css'
+import StyledButton from '@/components/shared/StyledButton'
 import ProductImage from './ProductImage'
 
 import { useRouter } from 'next/router'
@@ -23,7 +23,7 @@ interface ProductFormProps {
   action?: string
 }
 
-export default function ProductForm({ handleSubmit, action }: ProductFormProps) {
+export default function ProductForm({ handleSubmit, action = 'Add' }: ProductFormProps) {
   const [id, setId] = useState(0)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -31,7 +31,7 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
   const [price, setPrice] = useState(0)
   const [status, setStatus] = useState('available')
   const [image, setImage] = useState<File>()
-
+  
   const [mode, setMode] = useState('pve')
   const [releaseDate, setReleaseDate] = useState('')
   const [developer, setDeveloper] = useState('')
@@ -40,13 +40,14 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
   const [systemRequirement, setSystemRequirement] = useState(1)
 
   const [productImage, setProductImage] = useState('')
+  const [featured, setFeatured] = useState('false')
 
   const product: Product = useSelector((state: RootState) => state.product)
 
   const { data, error } = useSwr('/admin/v1/categories?length=999', CategoriesService.index)
   const { data: systemRequirementsData, error: systemRequirementsError } = 
     useSwr('/admin/v1/system_requirements?length=999', SystemRequirementsService.index)
-
+  
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -60,14 +61,16 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
 
       setMode(product.mode)      
       setDeveloper(product.developer)
-
+      setPublisher(product.publisher)
 
       setReleaseDate(product.release_date.split('T')[0])
-
+      
       setSystemRequirement(product?.system_requirement?.id ?? 1)
 
       setPrice(product.price)
       setStatus(product.status)
+
+      setFeatured(product.featured)
 
       setProductImage(product?.image_url)
     }
@@ -85,9 +88,10 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
     categories.forEach(category => 
       formData.append(`product[category_ids][]`, category)
     )
-
+    
     formData.append('product[mode]', mode)
     formData.append('product[developer]', developer)
+    formData.append('product[publisher]', publisher)
     formData.append('product[release_date]', releaseDate)
     formData.append('product[system_requirement_id]', systemRequirement.toString())
 
@@ -95,6 +99,7 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
     formData.append('product[status]', status)
 
     formData.append('product[productable]', 'game')
+    formData.append('product[featured]', featured)
 
     if (image) {
       formData.append('product[image]', image)
@@ -136,7 +141,7 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Type product name"
+                  placeholder="Type name"
                   className={styles.secundary_input}
                   value={name}
                   onChange={
@@ -151,7 +156,7 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
                 <Form.Label>Code</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Type product ID"
+                  placeholder="Type ID"
                   className={styles.secundary_input}
                   value={id}
                   onChange={
@@ -164,11 +169,11 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
 
             <Form.Row>
               <Form.Group as={Col} sm={12} className="p-2">
-                <Form.Label>Description</Form.Label>
+                <Form.Label>Descrição</Form.Label>
                 <Form.Control
                   as="textarea"
                   type="text"
-                  placeholder="Type product description"
+                  placeholder="Type description"
                   className={styles.secundary_input}
                   value={description}
                   onChange={
@@ -301,9 +306,25 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
               </Form.Group>
             </Form.Row>
 
-            <Form.Row>              
-              <Form.Group as={Col} md={6} sm={12} className="p-2">
-                <Form.Label>Preço</Form.Label>
+            <Form.Row> 
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
+                <Form.Label>Featured</Form.Label>
+                <Form.Control
+                  as="select"
+                  className={styles.secundary_input}
+                  value={featured}
+                  onChange={
+                      (evt: React.ChangeEvent<HTMLSelectElement>) => 
+                        setFeatured(evt.target.value)
+                    }
+                  >
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
+                <Form.Label>Price</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Type price"
@@ -317,7 +338,7 @@ export default function ProductForm({ handleSubmit, action }: ProductFormProps) 
                 />
               </Form.Group>
 
-              <Form.Group as={Col} md={6} sm={12} className="p-2">
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
                 <Form.Label>Status</Form.Label>
                 <Form.Control
                   as="select"

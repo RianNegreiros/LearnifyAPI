@@ -11,7 +11,9 @@ export default interface Product {
   productable: string
   mode: string
   developer: string
+  publisher: string
   release_date: string
+  featured: string
   categories: Category[]
   system_requirement: SystemRequirement
 }
