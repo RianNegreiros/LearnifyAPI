@@ -8,7 +8,7 @@ interface TitleAdminPanelProps {
     title: String,
     path: String,
     icon?: IconProp
-    newPath: string
+    newPath?: string
 }
 
 export default function TitleAdminPanel({ title, path, icon, newPath }: TitleAdminPanelProps) {
