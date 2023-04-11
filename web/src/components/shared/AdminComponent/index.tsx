@@ -10,19 +10,19 @@ interface AdminComponentProps {
 export default function AdminComponent({ children }: AdminComponentProps) {
   return (
     <Row className="mr-lg-4">
-        <Col lg={3}>
-            <LateralMenu />
-        </Col>
+      <Col lg={3}>
+        <LateralMenu />
+      </Col>
 
-        <Col lg={9}>
-            <div className="d-flex flex-column sticky-footer-wrapper container">
-                <AdminHeader name="User name" />
-                <div className="flex-fill text-center">
-                    { children }
-                </div>
-                <AdminFooter />
-            </div>
-        </Col>
+      <Col lg={9}>
+        <div className="d-flex flex-column sticky-footer-wrapper container">
+          <AdminHeader />
+          <div className="flex-fill text-center">
+            {children}
+          </div>
+          <AdminFooter />
+        </div>
+      </Col>
     </Row>
   )
 }

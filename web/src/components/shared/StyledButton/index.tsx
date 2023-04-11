@@ -7,17 +7,21 @@ import { ButtonHTMLAttributes } from 'react'
 type StyledButtonProps =  ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: IconProp
   action?: string
-  active?: boolean
   type_button: string
+  active?: boolean
 }
 
-export default function StyledButton({ icon, action, type_button, ...rest }: StyledButtonProps) {
+export default function StyledButton({ icon, action, type_button, active = false, ...rest }: StyledButtonProps) {
   return (
     <Button 
-    className={(type_button == "red") ? styles.red_button : styles.blue_button}
-    {...rest}
+        className={`
+            ${(type_button == "red") ? styles.red_button : styles.blue_button} 
+            ${active ? 'active' : ''}
+        `
+        }
+        {...rest}
     >
         { icon && <FontAwesomeIcon icon={icon} className={action && "mr-2"} /> } {action}
     </Button>
-  )
+)
 }
