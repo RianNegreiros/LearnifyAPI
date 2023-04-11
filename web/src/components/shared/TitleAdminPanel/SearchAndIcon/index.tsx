@@ -8,7 +8,7 @@ import StyledButton from '@/components/shared/StyledButton'
 import Link from 'next/link'
 
 import { useDispatch } from 'react-redux'
-import {
+import { 
     setSearch as setSearchRedux,
     clearSearch
 } from '@/store/modules/admin/shared/search/reducer'
@@ -22,6 +22,7 @@ interface SearchAndIcon {
 
 export default function SearchAndIcon({ icon, newPath }: SearchAndIcon) {
     const [search, setSearch] = useState('')
+    const [placeholder, setPlaceholder] = useState('')
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -29,46 +30,71 @@ export default function SearchAndIcon({ icon, newPath }: SearchAndIcon) {
         dispatch(clearSearch())
     }, [])
 
+    useEffect(() => {
+        switch(router.pathname) {
+            case '/Admin/Products/List':
+                setPlaceholder('Search product')
+                break
+            case '/Admin/Categories/List':
+                setPlaceholder('Search category')
+                break
+            case '/Admin/SystemRequirements/List':
+                setPlaceholder('Search system requirement')
+                break
+            case '/Admin/Coupons/List':
+                setPlaceholder('Search coupon')
+                break
+            default:
+                setPlaceholder('Search users')
+                break
+        }
+    }, [router.pathname])
+
     const handleSearch = (): void => {
         router.replace(router.pathname, '?page=1')
         dispatch(setSearchRedux(search))
     }
+
     return (
         <Row>
-            <Col lg={9} xs>
+            <Col lg={10} xs>
                 <Row>
-                    <Col lg={9} xs={10}>
+                    <Col lg={10} xs={10}>
                         <InputGroup>
-                            <FormControl
-                                placeholder="Search User"
-                                className={styles.input}
+                            <FormControl 
+                                placeholder={placeholder}
+                                className={styles.input} 
                                 value={search}
-                                onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
-                                    setSearch(evt.target.value)
-                                }}
-                                onKeyPress={(evt: React.KeyboardEvent<HTMLInputElement>) => {
-                                    if (evt.key.toLowerCase() === 'enter') {
-                                        handleSearch()
+                                onChange={
+                                    (evt: React.ChangeEvent<HTMLInputElement>) =>
+                                        setSearch(evt.target.value)
+                                }
+
+                                onKeyPress={
+                                    (evt: React.KeyboardEvent<HTMLInputElement>) => {
+                                        if (evt.key.toLocaleLowerCase() === 'enter') {
+                                            handleSearch()
+                                        }
                                     }
-                                }}
+                                }
                             />
                         </InputGroup>
                     </Col>
 
-                    <Col lg={3} xs={2} className={styles.search_icon} style={{ cursor: 'pointer' }}>
-                        <FontAwesomeIcon
-                            icon={faSearch}
-                            size="lg"
-                            color="var(--color-gray-light)"
-                            className="float-left"
+                    <Col lg={2} xs={2} className={styles.search_icon}>
+                        <FontAwesomeIcon 
+                            icon={faSearch} 
+                            size="lg" 
+                            color="var(--color-gray-light)" 
+                            className="float-left" 
                             onClick={handleSearch}
                         />
                     </Col>
                 </Row>
             </Col>
 
-            <Col lg={2} xs={{ span: 3 }} className={styles.titleButton}>
-                <Link href={newPath}>
+            <Col lg={2} xs={{span: 3}} className={styles.titleButton}>
+                <Link href={newPath}> 
                     <a>
                         <StyledButton icon={icon} type_button="blue" />
                     </a>
