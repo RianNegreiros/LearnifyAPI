@@ -5,12 +5,12 @@
   margin-top: 10px;
 }
 
-.titleButton {
-  margin-top: -5px;
-}
-
 @media (max-width: 1200px) {
-.styledPath {
-  display: none!important;
- }
+  .styledPath {
+    display: none!important;
+  }
+
+  .title {
+    margin-left: 10px;
+  }
 }

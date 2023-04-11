@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash, faGhost } from '@fortawesome/free-solid-svg-icons'
 import AdminListTable from '@/components/shared/AdminListTable'
 import AdminDeleteModal from '@/components/shared/AdminDeleteModal'
-import styles from '@/styles/AdminPanel.module.css'
 import NoData from '@/components/shared/NoData'
 
 import withAuthAdmin from '@/components/withAuthAdmin'
@@ -24,7 +23,7 @@ const defaultUrl = '/admin/v1/categories'
 import UrlService from '@/util/UrlService'
 import { RootState } from '@/store'
 
-function List() {
+const List = () => {
   const [show, setShow] = useState(false)
   const [categoryToRemove, setCategoryToRemove] = useState(0)
   const [url, setUrl] = useState(defaultUrl)
@@ -48,17 +47,17 @@ function List() {
     setCategoryToRemove(id)
   }
 
-  const handleClose = async (success: boolean): Promise<void> => {
+  const handleClose = async (success: boolean): Promise<void> => { 
     setShow(false)
 
     if (!success) return
 
     try {
       await CategoriesService.delete(categoryToRemove)
-      toast.info('Successfully removed category')
+      toast.info('Successfully removed category!')
       mutate()
-    } catch (err) {
-      toast.error('Error removing category')
+    } catch (err){
+      toast.error('Error removing category!')
       console.log(err)
     }
   }
@@ -69,41 +68,41 @@ function List() {
   }
 
   if (error) {
-    toast.error('Error listing categories')
+    toast.error('Error loading categories!')
     console.log(error)
   }
 
   return (
     <AdminComponent>
-      <TitleAdminPanel
-        title="Categories"
-        path="Dashboard > Categories"
-        icon={faGhost}
-        newPath="/Admin/Categories/New" />
+      <TitleAdminPanel 
+        title="Categories" 
+        path="Dashboard > Categories" 
+        icon={faGhost} 
+        newPath="/Admin/Categories/New"/>
 
-      <AdminDeleteModal handleClose={handleClose} show={show} target="Category" />
+      <AdminDeleteModal handleClose={handleClose} show={show} target="category" />
 
       {
         data && data.categories && data.categories.length > 0 ? (
-          <AdminListTable first_title="Category name" meta={data.meta}>
+          <AdminListTable first_title="Category Name" meta={data.meta}>
             {
               data.categories.map(category => (
-                <tr className={styles.table_line} key={category.id}>
+                <tr key={category.id}>
                   <td>{category.name}</td>
                   <td>
-                    <div className={styles.hover}>
-                      <FontAwesomeIcon
-                        icon={faEdit}
+                    <div>
+                      <FontAwesomeIcon 
+                        icon={faEdit} 
                         onClick={() => handleEdit(category)}
                       />
                     </div>
                   </td>
 
                   <td>
-                    <div className={styles.hover}>
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        onClick={() => handleShow(category.id)}
+                    <div>
+                      <FontAwesomeIcon 
+                        icon={faTrash} 
+                        onClick={() => handleShow(category.id)} 
                       />
                     </div>
                   </td>

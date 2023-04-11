@@ -55,7 +55,7 @@ export default function SearchAndIcon({ icon, newPath }: SearchAndIcon) {
                         </InputGroup>
                     </Col>
 
-                    <Col lg={3} xs={2} className="mt-1" style={{ cursor: 'pointer' }}>
+                    <Col lg={3} xs={2} className={styles.search_icon} style={{ cursor: 'pointer' }}>
                         <FontAwesomeIcon
                             icon={faSearch}
                             size="lg"

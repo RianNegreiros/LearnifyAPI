@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash, faGamepad } from '@fortawesome/free-solid-svg-icons'
 import AdminListTable from '@/components/shared/AdminListTable'
 import AdminDeleteModal from '@/components/shared/AdminDeleteModal'
-import styles from '@/styles/AdminPanel.module.css'
 
 import withAuthAdmin from '@/components/withAuthAdmin'
 
@@ -25,7 +24,7 @@ import { RootState } from '@/store'
 
 const defaultUrl = '/admin/v1/products'
 
-const List = () => {
+const List: React.FC = () => {
   const [show, setShow] = useState(false)
   const [url, setUrl] = useState(defaultUrl)
   const [productToRemove, setProductToRemove] = useState(0)
@@ -55,10 +54,10 @@ const List = () => {
 
     try {
       await ProductsService.delete(productToRemove)
-      toast.info('Successfully removed product')
+      toast.info('Successfully removed product!')
       mutate()
     } catch (err) {
-      toast.error('Error removing product')
+      toast.error('Error removing product!')
       console.log(err)
     }
   }
@@ -69,15 +68,15 @@ const List = () => {
   }
 
   if (error) {
-    toast.error('Error loading products')
+    toast.error('Error loading products!')
     console.log(error)
   }
 
   return (
     <AdminComponent>
       <TitleAdminPanel 
-        title="Products" 
-        path="Dashboard > Products" 
+        title="Produtos" 
+        path="Dashboard > Produtos" 
         icon={faGamepad} 
         newPath="/Admin/Products/New"
       />
@@ -95,7 +94,7 @@ const List = () => {
           >
             {
               data.products.map(product => (
-                <tr className={styles.table_line} key={product.id}>
+                <tr key={product.id}>
                   <td>{product.name}</td>
                   <td>
                     { 
@@ -115,7 +114,7 @@ const List = () => {
                     {product.status === 'available' ? 'Available' : 'Unavailable'}
                   </td>
                   <td>
-                    <div className={styles.hover}>
+                    <div>
                       <FontAwesomeIcon 
                         icon={faEdit} 
                         onClick={() => handleEdit(product)}
@@ -123,7 +122,7 @@ const List = () => {
                     </div>
                   </td>
                   <td>
-                    <div className={styles.hover}>
+                    <div>
                       <FontAwesomeIcon 
                         icon={faTrash} 
                         onClick={() => handleShow(product.id)} />

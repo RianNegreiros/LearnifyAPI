@@ -1,10 +1,22 @@
 .background {
   background-color: var(--color-primary);
-  width: 100%;
   padding: 20px;
-  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.line {
-  background-color: rgba(245,245,245,0.3);
+@media screen and (max-width: 991px) {
+  .logo {
+    display: none !important;
+  }
+
+  .social_medias {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .social_medias svg {
+    font-size: 1.4rem;
+  }
 }

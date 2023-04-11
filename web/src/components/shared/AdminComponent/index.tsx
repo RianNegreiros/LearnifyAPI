@@ -1,6 +1,6 @@
 import { Col, Row } from 'react-bootstrap'
-import AdminHeader from '@/components/shared/Header/AdminHeader'
-import AdminFooter from '@/components/shared/Footer/AdminFooter'
+import AdminHeader from '@/components/shared/AdminHeader'
+import AdminFooter from '@/components/shared/AdminFooter'
 import LateralMenu from '@/components/shared/LateralMenu'
 
 interface AdminComponentProps {

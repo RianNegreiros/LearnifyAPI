@@ -3,19 +3,4 @@
   padding: 30px;
   border-radius: 10px;
   margin-top: 20px;
-  margin-bottom: 40px;
-}
-
-.admin_panel table thead tr th {
-  text-align: left;
-}
-
-.admin_panel table thead tr th:last-of-type {
-  text-align: center;
-}
-
-.admin_panel table {
-  color: white;
-  border-collapse: separate;
-  border-spacing: 0 1em;
 }
