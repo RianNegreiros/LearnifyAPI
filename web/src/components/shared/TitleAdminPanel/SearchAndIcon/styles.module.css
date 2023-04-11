@@ -1,0 +1,9 @@
+.input {
+  background-color: var(--color-secondary);
+  border: none;
+  height: 30px;
+}
+
+.input:focus {
+  background-color: var(--color-secondary);
+}
