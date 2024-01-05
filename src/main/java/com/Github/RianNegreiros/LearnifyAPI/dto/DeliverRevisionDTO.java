@@ -1,8 +1,8 @@
-package com.devsuperior.dslearnbds.dto;
+package com.Github.RianNegreiros.LearnifyAPI.dto;
+
+import com.Github.RianNegreiros.LearnifyAPI.entities.enums.DeliverStatus;
 
 import java.io.Serializable;
-
-import com.devsuperior.dslearnbds.entities.enums.DeliverStatus;
 
 public class DeliverRevisionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -1,9 +1,9 @@
-package com.devsuperior.dslearnbds.dto;
+package com.Github.RianNegreiros.LearnifyAPI.dto;
+
+import com.Github.RianNegreiros.LearnifyAPI.entities.Notification;
 
 import java.io.Serializable;
 import java.time.Instant;
-
-import com.devsuperior.dslearnbds.entities.Notification;
 
 public class NotificationDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
