@@ -1,4 +1,4 @@
-# Learnify API Documentation
+# Learnify API
 
 ## Overview
 
