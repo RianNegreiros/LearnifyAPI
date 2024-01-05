@@ -1,14 +1,13 @@
-package com.devsuperior.dslearnbds.resources;
+package com.Github.RianNegreiros.LearnifyAPI.resource;
 
+import com.Github.RianNegreiros.LearnifyAPI.dto.UserDTO;
+import com.Github.RianNegreiros.LearnifyAPI.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.devsuperior.dslearnbds.dto.UserDTO;
-import com.devsuperior.dslearnbds.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
