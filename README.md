@@ -2,11 +2,11 @@
 
 ## Overview
 
-This API is designed to manage educational content, including tasks, lessons, and various resources. The entities in the system are interconnected to represent the relationships between different components.
+This API is designed to manage educational content, including tasks, lessons, and various resources.
 
 ### Entities
 
-![Database Diagram](/_docs/learnifyAPI.drawio.png)
+Checkout the diagram [here](/_docs/learnifyAPI.drawio.png)
 
 1 - Task
 
